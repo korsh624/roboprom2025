@@ -1,7 +1,7 @@
 import socket
 import time
 
-def udp_server(host='192.168.33.237', port=8888):
+def udp_server(host='192.168.100.167', port=8888):
     # Создаем UDP сокет
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
         # Привязываем сокет к адресу и порту
@@ -20,8 +20,6 @@ def udp_server(host='192.168.33.237', port=8888):
                 print(f'Moving manipulator to point x={message[0]}, y={message[1]},z={message[2]}')
                 time.sleep(5)
                 # Отправляем обратно сообщение "Done"
-                sock.sendto(b"done", addr)
-            if message=="start":
                 sock.sendto(b"done", addr)
 
 if __name__ == "__main__":

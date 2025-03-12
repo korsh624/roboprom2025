@@ -3,8 +3,8 @@
 #include <EEPROM.h>
 #define UDP_PORT 8888 
 
-IPAddress TERMINAL(192, 168, 42, 14);
-IPAddress knu(192, 168, 42, 177);
+IPAddress TERMINAL(192, 168, 100, 223);
+IPAddress knu(192, 168, 100, 49);
 byte mac[] = {0xDE, 0xAD, 0xBE, 0xEF, 0xFE, 0xED}; // MAC-адрес
 char packetBuffer[UDP_TX_PACKET_MAX_SIZE];
 EthernetUDP Udp;
@@ -28,18 +28,22 @@ void loop() {
     Udp.read(packetBuffer, UDP_TX_PACKET_MAX_SIZE);
     packetBuffer[packetSize] = '\0';
     if (strcmp(packetBuffer, "whating") == 0) {
-      Serial3.println("whating");  
+      Serial3.println("whating");
+      Serial.println("whating");   
     }
     if (strcmp(packetBuffer, "worck") == 0) {
       Serial3.println("worck");
+      Serial.println("worck");
     }
     if (strcmp(packetBuffer, "done") == 0) {
       Serial3.println("done");
+      Serial.println("done");
       }
   }
   if (Serial3.available() > 0) {
     String receivedData = Serial3.readStringUntil('\n');
-    sendUdp(TERMINAL,receivedData); 
+    sendUdp(TERMINAL,receivedData);
+    Serial.println(receivedData); 
   }
   
 }
